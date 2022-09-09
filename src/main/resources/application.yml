@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: assignment
+
+  datasource:
+   url: jdbc:postgresql://localhost:5432/postgres
+   username: postgres
+   password: postgres
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        jdbc.batch_size: 20
+

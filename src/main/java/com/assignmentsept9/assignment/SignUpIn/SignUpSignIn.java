@@ -20,16 +20,9 @@ public class SignUpSignIn {
         return service.addEmployee(employee);
     }
 
-    @PostMapping("/signIn/{email}")
-    public ResponseEntity<String > signIn(@PathVariable String email, @RequestBody String password){
+    @PostMapping("/signIn")
+    public boolean signIn(@RequestHeader String email, @RequestHeader String password){
         return service.signIn(email,password);
     }
-
-    @GetMapping("/view/course")
-    public List<Course> getCourse(){
-        return service.getAllCourses();
-    }
-
-
 
 }

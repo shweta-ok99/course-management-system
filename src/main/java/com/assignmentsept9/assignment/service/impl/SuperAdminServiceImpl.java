@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 public class SuperAdminServiceImpl implements SuperAdminService {
     @Override
     public boolean permit(Course course) {
-        return false;
+
+        return true;
     }
 }

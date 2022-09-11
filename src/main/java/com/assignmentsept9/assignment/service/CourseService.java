@@ -7,4 +7,6 @@ public interface CourseService {
     ResponseEntity<String> addCourse(Course course);
 
     ResponseEntity<String> updateCourse(Course course);
+
+    ResponseEntity<String> deleteCourse(Long id);
 }

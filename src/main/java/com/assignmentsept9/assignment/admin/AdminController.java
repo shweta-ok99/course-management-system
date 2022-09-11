@@ -25,4 +25,8 @@ public class AdminController {
     }
 
 
+    @DeleteMapping("delete/course/{id}")
+    public ResponseEntity<String > deleteCourse(@PathVariable Long id){
+        return service.deleteCourse(id);
+    }
 }

@@ -1,17 +1,14 @@
-package com.assignmentsept9.assignment.SignUpIn;
+package com.assignmentsept9.assignment.controller;
 
-import com.assignmentsept9.assignment.domain.Course;
-import com.assignmentsept9.assignment.domain.Employee;
+import com.assignmentsept9.assignment.dto.SignInDto;
 import com.assignmentsept9.assignment.dto.SignUpDto;
 import com.assignmentsept9.assignment.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-public class SignUpSignIn {
+public class SignUpSignInController {
 
     @Autowired
     EmployeeService service;
@@ -22,8 +19,8 @@ public class SignUpSignIn {
     }
 
     @PostMapping("/signIn")
-    public boolean signIn(@RequestHeader String email, @RequestHeader String password){
-        return service.signIn(email,password);
+    public ResponseEntity<String> signIn(@RequestBody SignInDto signInDto){
+        return service.signIn(signInDto);
     }
 
 }

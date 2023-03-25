@@ -1,6 +1,7 @@
-package com.assignmentsept9.assignment.employee;
+package com.assignmentsept9.assignment.controller;
 
 import com.assignmentsept9.assignment.domain.Course;
+import com.assignmentsept9.assignment.dto.SignInDto;
 import com.assignmentsept9.assignment.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +16,9 @@ public class EmployeeController {
     @Autowired
     EmployeeService employeeService;
 
-    @GetMapping("/get/courses")
-    public List<Course> getCourses(@RequestHeader String email,@RequestHeader String password){
-        return employeeService.getAllCourses(email,password);
+    @PostMapping("/get/courses")
+    public ResponseEntity<Object>  getCourses(@RequestBody SignInDto signInDto){
+        return employeeService.getAllCourses(signInDto);
     }
 
     @GetMapping("/token/login")

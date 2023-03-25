@@ -1,4 +1,4 @@
-package com.assignmentsept9.assignment.admin;
+package com.assignmentsept9.assignment.controller;
 
 import com.assignmentsept9.assignment.domain.Course;
 import com.assignmentsept9.assignment.service.CourseService;

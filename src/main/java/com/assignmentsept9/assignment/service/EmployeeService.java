@@ -2,6 +2,7 @@ package com.assignmentsept9.assignment.service;
 
 import com.assignmentsept9.assignment.domain.Course;
 import com.assignmentsept9.assignment.domain.Employee;
+import com.assignmentsept9.assignment.dto.SignInDto;
 import com.assignmentsept9.assignment.dto.SignUpDto;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.ResponseEntity;
@@ -12,9 +13,9 @@ public interface EmployeeService {
 
     ResponseEntity<String> addEmployee(SignUpDto signUpDto);
 
-    boolean signIn(String email, String password);
+    ResponseEntity<String> signIn(SignInDto signInDto);
 
-    List<Course> getAllCourses(String email,String password);
+    ResponseEntity<Object> getAllCourses(SignInDto signInDto);
 
     boolean signInWithToken(Double token);
 

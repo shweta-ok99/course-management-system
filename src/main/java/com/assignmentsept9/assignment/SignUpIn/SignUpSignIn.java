@@ -2,6 +2,7 @@ package com.assignmentsept9.assignment.SignUpIn;
 
 import com.assignmentsept9.assignment.domain.Course;
 import com.assignmentsept9.assignment.domain.Employee;
+import com.assignmentsept9.assignment.dto.SignUpDto;
 import com.assignmentsept9.assignment.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +17,8 @@ public class SignUpSignIn {
     EmployeeService service;
 
     @PostMapping("/signUp")
-    public ResponseEntity<String> signUp(@RequestBody Employee employee){
-        return service.addEmployee(employee);
+    public ResponseEntity<String> signUp(@RequestBody SignUpDto signUpDto){
+        return service.addEmployee(signUpDto);
     }
 
     @PostMapping("/signIn")

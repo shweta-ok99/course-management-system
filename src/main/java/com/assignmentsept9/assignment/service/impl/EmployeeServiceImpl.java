@@ -1,7 +1,9 @@
 package com.assignmentsept9.assignment.service.impl;
 
+import com.assignmentsept9.assignment.common.Constant;
 import com.assignmentsept9.assignment.domain.Course;
 import com.assignmentsept9.assignment.domain.Employee;
+import com.assignmentsept9.assignment.dto.SignUpDto;
 import com.assignmentsept9.assignment.repository.CourseRepo;
 import com.assignmentsept9.assignment.repository.EmployeeRepo;
 import com.assignmentsept9.assignment.service.EmployeeService;
@@ -15,6 +17,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
+import static com.assignmentsept9.assignment.BcryptPasswordEncoder.BcryptEncoder.encodePassword;
 
 @Log
 @Service
@@ -30,14 +34,23 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
     @Override
-    public ResponseEntity<String> addEmployee(Employee employee) {
-        if (employee == null) {
-            employee = new Employee();
-            repo.save(employee);
-            return new ResponseEntity<>("Account Created Successfully", HttpStatus.CREATED);
+    public ResponseEntity<String> addEmployee(SignUpDto signUpDto) {
+        Optional<Employee> byEmail = repo.findByEmail(signUpDto.getEmail());
+        if (byEmail.isPresent()){
+            return new ResponseEntity<>(Constant.ALREADY_EXISTS+signUpDto.getEmail(),HttpStatus.BAD_REQUEST);
         }
-        repo.save(employee);
-        return new ResponseEntity<>("Account Created Successfully", HttpStatus.CREATED);
+        Employee newEmployee = createEmployee(signUpDto);
+        repo.save(newEmployee);
+        return new ResponseEntity<>(Constant.ACCOUNT_CREATED, HttpStatus.CREATED);
+    }
+
+    private Employee createEmployee(SignUpDto signUpDto) {
+        Employee employee= new Employee();
+        employee.setEmail(signUpDto.getEmail());
+        employee.setName(signUpDto.getName());
+        employee.setRole(signUpDto.getRole());
+        employee.setPassword(encodePassword(signUpDto.getPassword()));
+        return employee;
     }
 
     @Override
